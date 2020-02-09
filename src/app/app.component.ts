@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-root',
@@ -27,15 +28,19 @@ export class AppComponent {
   };
 
   download = function (data) {
-    const blob = new Blob([data], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.setAttribute('hidden', '');
-    a.setAttribute('href', url);
-    a.setAttribute('download', 'download.csv');
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a)
+    let fileName = 'address.pdf';
+    saveAs(new Blob([data], { type: '.pdf' }), fileName)
+
+
+    // const blob = new Blob([data], { type: 'text/csv' });
+    // const url = window.URL.createObjectURL(blob);
+    // const a = document.createElement('a');
+    // a.setAttribute('hidden', '');
+    // a.setAttribute('href', url);
+    // a.setAttribute('download', 'download.csv');
+    // document.body.appendChild(a);
+    // a.click();
+    // document.body.removeChild(a)
   };
 
 
